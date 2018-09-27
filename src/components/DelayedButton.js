@@ -1,13 +1,18 @@
-import React from "react";
+import React from 'react';
 
-export default class DelayedButton extends React.Component 
-{
-  render()
-  {
-    return (<button onClick={(e) => {
-        e.persist();
-      setTimeOut(this.props.onDelayedClick(e),this.props.delay)
-      
-    }>Delayed</button>);
+class DelayedButton extends React.Component {
+  handleClick = (event) => {
+    event.persist();
+    setTimeout(() => {
+      this.props.onDelayedClick(event);
+    }, this.props.delay);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>Delayed</button>
+    );
   }
 }
+
+export default DelayedButton
